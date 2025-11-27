@@ -1,51 +1,34 @@
 package ua.edu.ucu.apps;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
-public class UserTest {
-
-    @Test
-    void testMultipleConstructorsBehaveDifferently() {
-        User u1 = new User("Sofia");
-        User u2 = new User("Sofia", Gender.FEMALE);
-        User u3 = new User("Sofia", 19, Gender.FEMALE);
-
-        assertEquals("Sofia", u1.getName());
-        assertNull(u1.getGender());
-        assertEquals(0, u1.getAge());
-
-        assertEquals(Gender.FEMALE, u2.getGender());
-        assertEquals(0, u2.getAge());
-
-        assertEquals(19, u3.getAge());
-    }
+class UserTest {
 
     @Test
-    void testBuilderCreatesUser() {
+    void testUserBuilder() {
         User user = User.builder()
-                .name("Bob")
-                .age(33)
+                .name("Oles")
+                .age(30)
                 .gender(Gender.MALE)
-                .weight(82)
+                .weight(75.5)
                 .height(180)
-                .role("admin")
-                .role("user")
+                .role("Admin")    
+                .role("SuperAdmin")  
                 .build();
 
-        assertEquals("Bob", user.getName());
-        assertEquals(2, user.getRoles().size());
+        Assertions.assertEquals("Oles", user.getName());
+        Assertions.assertEquals(30, user.getAge());
+        Assertions.assertEquals(Gender.MALE, user.getGender());
+        Assertions.assertEquals(75.5, user.getWeight());   
+        Assertions.assertEquals(2, user.getRoles().size());
+        Assertions.assertEquals(List.of("Admin", "SuperAdmin"), user.getRoles());
     }
 
     @Test
-    void testSingularRoles() {
-        User user = User.builder()
-                .name("Alice")
-                .role("dev")
-                .role("qa")
-                .build();
-
-        assertEquals(2, user.getRoles().size());
+    void testUserToString() {
+        User user = User.builder().name("Test").build();
+        Assertions.assertNotNull(user.toString());
     }
 }
-

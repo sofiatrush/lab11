@@ -12,7 +12,6 @@ public class ProxyImage implements MyImage {
     @Override
     public void display() {
         if (realImage == null) {
-            System.out.println("Loading image: " + filename);
             this.realImage = new RealImage(filename);
         }
         
@@ -23,3 +22,4 @@ public class ProxyImage implements MyImage {
         return loaded;
     }
 }
+
