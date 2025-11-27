@@ -1,10 +1,9 @@
 package ua.edu.ucu.apps;
 
 public class ProxyImage implements MyImage {
-    
     private RealImage realImage;
-    
     private String filename;
+    private boolean loaded = false;
 
     public ProxyImage(String filename) {
         this.filename = filename;
@@ -18,5 +17,9 @@ public class ProxyImage implements MyImage {
         }
         
         this.realImage.display();
+    }
+
+    public boolean isLoaded() {
+        return loaded;
     }
 }

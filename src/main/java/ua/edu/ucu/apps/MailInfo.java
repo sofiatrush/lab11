@@ -12,4 +12,7 @@ public class MailInfo {
     public String generateMail() {
         return mailStrategy.generateMailContent(client);
     }
+
+    public MailInfo(Client client2, int i) {
+    }
 }
